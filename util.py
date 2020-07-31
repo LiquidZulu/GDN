@@ -26,7 +26,7 @@ async def iimages(year: int, month: int, day:int):
         resp = requests.head(urls[i])
         resps[i] = resp.ok
     
-    return resps
+    return [resps, urls]
 
 
 async def cloudfront(year: int, month: int, day:int):
@@ -41,4 +41,4 @@ async def cloudfront(year: int, month: int, day:int):
         else:
             ymd_str[i] = str(ymd[i])
     
-    return requests.head(f'''https://d1ejxu6vysztl5.cloudfront.net/comics/garfield/{year}/{ymd_str[0]}-{ymd_str[1]}-{ymd_str[2]}.gif''').ok
+    return [requests.head(f'''https://d1ejxu6vysztl5.cloudfront.net/comics/garfield/{year}/{ymd_str[0]}-{ymd_str[1]}-{ymd_str[2]}.gif''').ok, f'''https://d1ejxu6vysztl5.cloudfront.net/comics/garfield/{year}/{ymd_str[0]}-{ymd_str[1]}-{ymd_str[2]}.gif''']
